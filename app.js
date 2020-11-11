@@ -2,6 +2,7 @@
 const express = require("express")
 const PORT = 3000
 const app = express()
+const hbs =require("hbs")
 
 //SERVER ON AND LISTENING
 app.listen(PORT, ()=>{
@@ -11,7 +12,8 @@ app.listen(PORT, ()=>{
 //CREATE HOMEPAGE
 app.get('/', (request, response)=>{
     // response.send('<h1>Welcome to the HOMEPAGE</h1>')
-    response.sendFile(`${__dirname}/views/home.html`)
+    // response.sendFile(`${__dirname}/views/home.html`)
+    response.render('home.html')
 })
 
 app.get('/about',(request, response)=>{
@@ -32,3 +34,6 @@ app.get('/cat', (request, response)=>{
 app.get('*', (request,response)=>{
     response.send('<h1>Error 404</h1>')
 })
+
+//HANDLEBARS - ENGINE VIEWS
+app.set("view engine", "hbs");
